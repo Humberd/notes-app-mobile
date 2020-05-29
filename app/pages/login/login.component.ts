@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PasswordCredentialsDomainService } from '../../domain/user/service/password-credentials-domain.service';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,21 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent {
   name = '';
-  private rootForm: FormGroup;
+  rootForm: FormGroup;
 
-  constructor() {
+  constructor(private passwordCredentialsDomainService: PasswordCredentialsDomainService) {
     this.rootForm = new FormGroup({
-      login: new FormControl(''),
-      password: new FormControl('')
+      login: new FormControl('bob@gmail.com'),
+      password: new FormControl('admin123')
     })
   }
 
   login() {
-    console.log(this.rootForm.value);
+    this.passwordCredentialsDomainService.login({
+      email: this.rootForm.value.login,
+      password: this.rootForm.value.password
+    }).subscribe(response => {
+      console.log(response);
+    })
   }
 }

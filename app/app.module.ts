@@ -3,6 +3,7 @@ import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
+import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -25,6 +26,13 @@ import { LoginComponent } from './pages/login/login.component';
     AppRoutingModule,
     ReactiveFormsModule,
     NativeScriptFormsModule,
+    NativeScriptHttpClientModule
+  ],
+  providers: [
+    {
+      provide: 'BASE_URL',
+      useValue: 'http://10.0.2.2:8080'
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
