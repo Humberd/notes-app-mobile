@@ -1,0 +1,20 @@
+<form [formGroup]="rootForm">
+  <StackLayout>
+    <TextField hint="Login"
+               formControlName="login"
+               secure="false"
+               returnKeyType="next"
+               autocorrect="false"
+    ></TextField>
+
+    <TextField hint="Password"
+               formControlName="password"
+               secure="true"
+               returnKeyType="done"
+               (returnPress)="login()"
+               autocorrect="false"
+    ></TextField>
+
+    <Button text="Login" class="btn btn-primary" (tap)="login()"></Button>
+  </StackLayout>
+</form>
