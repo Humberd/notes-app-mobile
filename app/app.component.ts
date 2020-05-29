@@ -14,8 +14,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hello');
     firebase.init({
+      showNotifications: true,
+      showNotificationsWhenInForeground: true
     }).then(
         () => {
           console.log('firebase.init done');
