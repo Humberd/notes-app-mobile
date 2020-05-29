@@ -1,23 +1,43 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+const applicationSettings = require("application-settings");
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  title = 'notes-app-mobile';
-  private counter = 42;
+  jwtContent: JwtContent;
 
-  constructor() { }
+  constructor(private router: Router) {
+    const jwt = applicationSettings.getString('jwt');
+    if (!jwt) {
+      this.logout();
+    }
 
-  public getMessage() {
-    return this.counter > 0 ?
-      `${this.counter} taps left` :
-      'Hoorraaay! You unlocked the NativeScript clicker achievement!';
+    this.jwtContent = this.extractJwtContent(jwt);
+
   }
 
-  public onTap() {
-    this.counter--;
+  logout() {
+    applicationSettings.remove('jwt');
+    this.router.navigateByUrl('/login');
+  }
+
+  private extractJwtContent(jwt: string): JwtContent {
+    const b64Payload = jwt.split('.')[1];
+    return JSON.parse(atob(b64Payload));
   }
 }
+
+export interface JwtContent {
+  email: string;
+  sub: string;
+  jti: string;
+  exp: number;
+  iat: number;
+}
+

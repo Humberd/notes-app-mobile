@@ -1,7 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <StackLayout class="p-20">
-  <Label text="Tap the button" class="h1 text-center"></Label>
-  <Button text="TAP" (tap)="onTap()" class="-primary"></Button>
-  <Label [text]="getMessage()" class="h2 text-center" textWrap="true"></Label>
-  <Label text="hello world"></Label>
+  <Label [text]="'Logged as: ' + jwtContent.email" class="h3 text-center"></Label>
+  <Button text="Logout" (tap)="logout()" class="-primary"></Button>
 </StackLayout>
