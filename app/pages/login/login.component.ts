@@ -20,7 +20,7 @@ export class LoginComponent {
       password: new FormControl('admin123'),
     });
 
-    if (!applicationSettings.getString('jwt')) {
+    if (applicationSettings.getString('jwt')) {
       this.router.navigateByUrl('/home')
     }
   }

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { transformBase64ToString } from '../../polyfills/base64';
 
 const applicationSettings = require("application-settings");
 
@@ -19,7 +20,6 @@ export class HomeComponent {
     }
 
     this.jwtContent = this.extractJwtContent(jwt);
-
   }
 
   logout() {
@@ -29,7 +29,7 @@ export class HomeComponent {
 
   private extractJwtContent(jwt: string): JwtContent {
     const b64Payload = jwt.split('.')[1];
-    return JSON.parse(atob(b64Payload));
+    return JSON.parse(transformBase64ToString('Android', b64Payload));
   }
 }
 

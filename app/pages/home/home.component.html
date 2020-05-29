@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <StackLayout class="p-20">
-  <Label [text]="'Logged as: ' + jwtContent.email" class="h3 text-center"></Label>
+  <Label [text]="'Logged as: ' + jwtContent.sub" class="h3 text-center"></Label>
   <Button text="Logout" (tap)="logout()" class="-primary"></Button>
 </StackLayout>
