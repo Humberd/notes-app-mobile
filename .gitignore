@@ -6,3 +6,5 @@ hooks/
 
 app/**/*.js
 
+/app/App_Resources/Android/.gradle/
+/.idea/
