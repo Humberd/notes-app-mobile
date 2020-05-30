@@ -31,7 +31,8 @@ import { LoginComponent } from './pages/login/login.component';
   providers: [
     {
       provide: 'BASE_URL',
-      useValue: 'http://10.0.2.2:8080'
+      useValue: 'http://192.168.0.109:8080',
+      // useValue: 'http://10.0.2.2:8080'
     }
   ],
   bootstrap: [AppComponent],

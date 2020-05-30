@@ -4,6 +4,7 @@ import { PasswordCredentialsDomainService } from '../../domain/user/service/pass
 import { Router } from '@angular/router';
 import { FirebaseCloudMessagingService } from '../../services/firebase-cloud-messaging.service';
 import { switchMap } from 'rxjs/internal/operators';
+import * as Toast from 'nativescript-toast';
 
 const applicationSettings = require('application-settings');
 
@@ -48,6 +49,9 @@ export class LoginComponent {
           const jwt = headerValue.replace('Bearer ', '');
           applicationSettings.setString('jwt', jwt);
           this.router.navigateByUrl('/home');
+        }, error => {
+          console.error(error);
+          Toast.makeText(error.message, '10000').show()
         });
   }
 }
